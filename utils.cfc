@@ -39,21 +39,20 @@ component {
 		cfcookie(name=arguments.name, value=arguments.value, domain=".cfpm.io", expires=arguments.time, path='/');
 	}
 
-	function generateToken(){
-		var string = CreateUUID();
-		var token = Hash(string, 'SHA-512');
-		return token;
-	}
-
-	function time(time=''){
+	function time(time='', format=''){
 		if(time == ''){
 			return DateDiff("s", CreateDate(1970,1,1), Now());
 		}
+		if(IsValid('integer', time)){
+			var date = DateAdd("s", time, CreateDateTime(1970, 1, 1, 0, 0, 0));
+			if(format != ''){
+				format = format == true ? 'short' : format;
+				return dateTimeFormat(date, format);
+			}
+			return date;
+		}
 		if(IsValid('time', time)){
 			return DateDiff("s", CreateDate(1970,1,1), time);
-		}
-		if(IsValid('integer', time)){
-			DateAdd("s", time, CreateDateTime(1970, 1, 1, 0, 0, 0));
 		}
 	}
 }
