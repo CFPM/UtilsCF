@@ -35,10 +35,6 @@ component {
 		return httpService.send().getPrefix().Filecontent;
 	}
 
-	function setCookie(name, value, time='7'){
-		cfcookie(name=arguments.name, value=arguments.value, domain=".cfpm.io", expires=arguments.time, path='/');
-	}
-
 	function time(time='', format=''){
 		if(time == ''){
 			return DateDiff("s", CreateDate(1970,1,1), Now());
