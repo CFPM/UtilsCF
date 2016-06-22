@@ -43,18 +43,22 @@ component {
 	}
 
 	private function sendRequest(){
-		var result = this.httpService.send().getPrefix();
-		if(left(result.statuscode, 2) == '20'){
+		this.result = this.httpService.send().getPrefix();
+		if(left(this.result.statuscode, 2) == '20'){
 			try{
-				var results = deserializeJSON(result.filecontent);
+				this.results = deserializeJSON(this.result.filecontent);
 			}catch(any e){
 				try{
-					var results = application.udfs.XMLSafeParse(result.filecontent);
+					if(isXML(this.result.filecontent)){
+						this.results = XMLParse(this.result.filecontent);
+					}else{
+						this.results = this.result.filecontent;
+					}
 				}catch(any e){
-					var results = result.filecontent;
+					this.results = this.result.filecontent;
 				}
 			}
-			return results;
+			return this.results;
 		}else{
 			throw('Received status #result.statuscode# for curl request');
 		}
