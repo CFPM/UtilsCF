@@ -1,4 +1,10 @@
 component {
+
+	function init(){
+		this.api = new api();
+		return this;
+	}
+
 	function upperCaseWords(string){
 		return ReReplace(string,"\b(\w)","\u\1","ALL")
 	}
@@ -11,28 +17,6 @@ component {
 			data[split[1]] = split[2];
 		}
 		return data;
-	}
-
-	function post(urlString, data={}, headers={}){
-		return this.httpCall('POST', urlString, data);
-	}
-
-	function get(urlString, data={}, headers={}){
-		return this.httpCall('GET', urlString, data);
-	}
-
-	function httpCall(method, urlString, data={}, headers={}){
-		httpService = new http(method=arguments.method, charset='utf-8', url=arguments.urlString);
-		var type = method == 'GET' ? 'URL' : 'formField';
-		for(var key in data){
-			var value = data[key];
-			httpService.addParam(name=key, type=type, value=value);
-		}
-		for(var key in headers){
-			var value = data[key];
-			httpService.addParam(name=key, type='header', value=value);
-		}
-		return httpService.send().getPrefix().Filecontent;
 	}
 
 	function time(time='', format=''){
@@ -48,7 +32,31 @@ component {
 			return date;
 		}
 		if(IsValid('time', time)){
-			return DateDiff("s", CreateDate(1970,1,1), time);
+			if(format != ''){
+				format = format == true ? 'short' : format;
+				return dateTimeFormat(time, format);
+			}
+			var timestamp = DateDiff("s", CreateDate(1970,1,1), time);
+			return timestamp;
 		}
+	}
+
+	function sortArrayofStructs(array, key, order='asc'){
+		var keys = [];
+		var type = 'text';
+		for(var record in array){
+			type = isNumeric(record[key]) ? 'numeric' : type;
+			ArrayAppend(keys, record[key]);
+		}
+		ArraySort(keys, type, order);
+		var sortedArray = [];
+		for(var index in keys){
+			for(var record in array){
+				if(index == record[key]){
+					ArrayAppend(sortedArray, record);
+				}
+			}
+		}
+		return sortedArray;
 	}
 }
