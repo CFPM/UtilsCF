@@ -43,19 +43,19 @@ component {
 	}
 
 	private function sendRequest(){
-		this.result = this.httpService.send().getPrefix();
-		if(left(this.result.statuscode, 2) == '20'){
+		this.response = this.httpService.send().getPrefix();
+		if(left(this.response.statuscode, 2) == '20'){
 			try{
-				this.results = deserializeJSON(this.result.filecontent);
+				this.results = deserializeJSON(this.response.filecontent);
 			}catch(any e){
 				try{
-					if(isXML(this.result.filecontent)){
-						this.results = XMLParse(this.result.filecontent);
+					if(isXML(this.response.filecontent)){
+						this.results = XMLParse(this.response.filecontent);
 					}else{
-						this.results = this.result.filecontent;
+						this.results = this.response.filecontent;
 					}
 				}catch(any e){
-					this.results = this.result.filecontent;
+					this.results = this.response.filecontent;
 				}
 			}
 			return this.results;
