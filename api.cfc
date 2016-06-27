@@ -3,6 +3,7 @@ component {
 		return this;
 	}
 	public function post(requestURL, params={}, headers={}, body=''){
+		this.lastURL = requestURL;
 		createService('POST', requestURL);
 		addParams(params, 'formField');
 		addHeaders(headers);
@@ -12,6 +13,7 @@ component {
 		return response;
 	}
 	public function get(requestURL, params={}, headers={}){
+		this.lastURL = requestURL;
 		createService('GET', requestURL);
 		addParams(params, 'URL');
 		addHeaders(headers);
@@ -60,7 +62,7 @@ component {
 			}
 			return this.results;
 		}else{
-			throw('Received status #result.statuscode# for curl request');
+			throw('Received status #this.response.statuscode# for curl request: #this.lastURL#');
 		}
 	}
 
