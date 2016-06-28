@@ -1,11 +1,12 @@
 {
-    "name" : "utils",
-    "version" : "master",
-    "repository" : "https://github.com/Prefinem/CFUtils",
-
-    "author": "William Giles",
-    "homepage": "https://github.com/Prefinem",
-    "description" : "A Collection of Helpful Utilities for Coldfusion",
-    "keywords" : "Utilities, Util, Utility",
-    "license" : "MIT"
+    "description": "A Collection of Helpful Utilities for Coldfusion", 
+    "license": "MIT", 
+    "author": "William Giles", 
+    "external": {}, 
+    "keywords": "Utilities, Util, Utility", 
+    "packages": {
+        "request": "*"
+    }, 
+    "homepage": "https://github.com/Prefinem", 
+    "name": "utils"
 }

@@ -1,9 +1,11 @@
 component {
 
 	function init(){
-		this.api = new api();
+		this.cfpm = new cfpm();
+		this.request = this.cfpm.require('request');
 		return this;
 	}
+
 
 	function upperCaseWords(string){
 		return ReReplace(string,"\b(\w)","\u\1","ALL")
