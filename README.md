@@ -17,17 +17,17 @@ There are two main methods, get() and post().  They accept the same parameters w
 
 #### GET
 
-    var request = application.requre('utils').api.get(url, {'query':'test'});
-    
+    var request = application.requre('utils').request.get(url, {'query':'test'});
+
 #### POST
 
-    var request = application.requre('utils').api.post(url, {'query':'test'});
-    
+    var request = application.requre('utils').request.post(url, {'query':'test'});
+
 with body
 
-    var request = application.requre('utils').api.post(url, {'query':'test'}, {}, body);
-    
-    
+    var request = application.requre('utils').request.post(url, {'query':'test'}, {}, body);
+
+
 ### Response
 
 Utils.API will try and return a ColdFusion based response.  If the response is JSON, you will get a parsed ColdFusion struct.  If XML, then XML.  Lastly, we return the body if we can't figure it out
@@ -39,7 +39,7 @@ If a non 200 type response was given, we through an error with the response (str
 ## Basic Methods
 
 ### upperCaseWords(string)
-    
+
 Return a string with the first letter of each work capitalized
 
 ### parseQueryString(string)
@@ -50,9 +50,9 @@ Parses a query string into a nice key value struct
 
 Handles times.
 Without any parameters passed, sends back current unix time stamp.
-    
+
     var unixTimeStamp = application('utils').time();
-    
+
 With time being passed in, determines if unix time stamp, and converts it to ColdFusion native DateTime, else, converts ColdFusion native DateTime to unix time stamp.
 
     var dateTime = application('utils').time(unixTimeStamp);
@@ -65,5 +65,5 @@ With format being passed in, and with time empty or with time being passed in, c
 
 ### sortArrayofStructs(array, key, order='asc')
 
-    Sorts and Array of Structs.  
-    
+    Sorts and Array of Structs.
+
