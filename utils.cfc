@@ -8,7 +8,7 @@ component {
 
 
 	function upperCaseWords(string){
-		return ReReplace(string,"\b(\w)","\u\1","ALL")
+		return ReReplace(string,"\b(\w)","\u\1","ALL");
 	}
 
 	function parseQueryString(string){
