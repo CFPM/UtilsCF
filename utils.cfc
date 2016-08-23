@@ -38,7 +38,8 @@ component {
 				format = format == true ? 'short' : format;
 				return dateTimeFormat(time, format);
 			}
-			var timestamp = DateDiff("s", CreateDate(1970,1,1), time);
+			var dateTime = parseDateTime(time);
+			var timestamp = DateDiff("s", CreateDate(1970,1,1), dateTime);
 			return timestamp;
 		}
 	}
