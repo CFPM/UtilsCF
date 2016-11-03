@@ -1,40 +1,14 @@
 # UtilsCF
-Basic utilities that makes Coldfusion bearable
 
-##API
+Basic utilities that makes ColdFusion bearable
 
-Because will all the api calls there are out today, I decided to make a single component that could handle the most common use cases.  If you find a common use case to be missing, please open an issue for your use case.
+##Installation
 
-### Basic Usage
+UtilsCF is installed using CFPM or can be downloaded from source
 
-There are two main methods, get() and post().  They accept the same parameters with the exception being a body for post requests.
+###CFPM
 
-#### Params
-    requestURL (string): URL Endpoing (not including query string)
-    params (struct): Parameters to be sent through form fields (if POST) or through the url (if GET)
-    headers (struct): Any key value pair for headers you want to send along
-    body (string): ONLY FOR POST REQUESTS, sends a body
-
-#### GET
-
-    var request = application.requre('utils').request.get(url, {'query':'test'});
-
-#### POST
-
-    var request = application.requre('utils').request.post(url, {'query':'test'});
-
-with body
-
-    var request = application.requre('utils').request.post(url, {'query':'test'}, {}, body);
-
-
-### Response
-
-Utils.API will try and return a ColdFusion based response.  If the response is JSON, you will get a parsed ColdFusion struct.  If XML, then XML.  Lastly, we return the body if we can't figure it out
-
-### Bad Responses
-
-If a non 200 type response was given, we through an error with the response (string) of the status code.  Handle with a try/catch when using this call
+    cfpm add utils
 
 ## Basic Methods
 
@@ -67,3 +41,6 @@ With format being passed in, and with time empty or with time being passed in, c
 
     Sorts and Array of Structs.
 
+## Request (HTTP Calls)
+
+See [RequestCF](https://github.com/Prefinem/RequestCF)
